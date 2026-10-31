@@ -1,0 +1,1738 @@
+{
+  "components": {
+    "schemas": {
+      "AccountDetail": {
+        "properties": {
+          "account_id": {
+            "title": "Account Id",
+            "type": "string"
+          },
+          "canonical_name": {
+            "title": "Canonical Name",
+            "type": "string"
+          },
+          "latest_prediction": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PredictionSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "plan_tier": {
+            "title": "Plan Tier",
+            "type": "string"
+          },
+          "primary_domain": {
+            "title": "Primary Domain",
+            "type": "string"
+          },
+          "region": {
+            "title": "Region",
+            "type": "string"
+          },
+          "renewal_date": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Renewal Date"
+          },
+          "segment": {
+            "title": "Segment",
+            "type": "string"
+          },
+          "timezone": {
+            "title": "Timezone",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_id",
+          "canonical_name",
+          "primary_domain",
+          "segment",
+          "plan_tier",
+          "region",
+          "timezone",
+          "renewal_date",
+          "latest_prediction"
+        ],
+        "title": "AccountDetail",
+        "type": "object"
+      },
+      "AccountList": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AccountSummary"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "title": "AccountList",
+        "type": "object"
+      },
+      "AccountSummary": {
+        "properties": {
+          "account_id": {
+            "title": "Account Id",
+            "type": "string"
+          },
+          "canonical_name": {
+            "title": "Canonical Name",
+            "type": "string"
+          },
+          "latest_prediction": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PredictionSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "renewal_date": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Renewal Date"
+          },
+          "segment": {
+            "title": "Segment",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_id",
+          "canonical_name",
+          "segment",
+          "renewal_date",
+          "latest_prediction"
+        ],
+        "title": "AccountSummary",
+        "type": "object"
+      },
+      "ActionItem": {
+        "properties": {
+          "action_id": {
+            "title": "Action Id",
+            "type": "string"
+          },
+          "action_type": {
+            "title": "Action Type",
+            "type": "string"
+          },
+          "evidence": {
+            "additionalProperties": true,
+            "title": "Evidence",
+            "type": "object"
+          },
+          "prediction_id": {
+            "title": "Prediction Id",
+            "type": "string"
+          },
+          "proposed_at": {
+            "format": "date-time",
+            "title": "Proposed At",
+            "type": "string"
+          },
+          "reason_code": {
+            "title": "Reason Code",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "action_id",
+          "prediction_id",
+          "action_type",
+          "status",
+          "reason_code",
+          "evidence",
+          "proposed_at"
+        ],
+        "title": "ActionItem",
+        "type": "object"
+      },
+      "ActionList": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ActionItem"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "ActionList",
+        "type": "object"
+      },
+      "ApprovalRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "decision": {
+            "enum": [
+              "approved",
+              "rejected"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "title": "ApprovalRequest",
+        "type": "object"
+      },
+      "ApprovalResponse": {
+        "properties": {
+          "action_id": {
+            "title": "Action Id",
+            "type": "string"
+          },
+          "approval_id": {
+            "title": "Approval Id",
+            "type": "string"
+          },
+          "decided_at": {
+            "format": "date-time",
+            "title": "Decided At",
+            "type": "string"
+          },
+          "decision": {
+            "enum": [
+              "approved",
+              "rejected"
+            ],
+            "title": "Decision",
+            "type": "string"
+          }
+        },
+        "required": [
+          "approval_id",
+          "action_id",
+          "decision",
+          "decided_at"
+        ],
+        "title": "ApprovalResponse",
+        "type": "object"
+      },
+      "DataQuality": {
+        "properties": {
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/DataQualityCount"
+            },
+            "title": "Issues",
+            "type": "array"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "issues",
+          "total"
+        ],
+        "title": "DataQuality",
+        "type": "object"
+      },
+      "DataQualityCount": {
+        "properties": {
+          "count": {
+            "title": "Count",
+            "type": "integer"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "source",
+          "count"
+        ],
+        "title": "DataQualityCount",
+        "type": "object"
+      },
+      "EvidenceEvent": {
+        "properties": {
+          "event_id": {
+            "title": "Event Id",
+            "type": "string"
+          },
+          "event_time": {
+            "format": "date-time",
+            "title": "Event Time",
+            "type": "string"
+          },
+          "event_type": {
+            "title": "Event Type",
+            "type": "string"
+          },
+          "ingested_at": {
+            "format": "date-time",
+            "title": "Ingested At",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "source_record_id": {
+            "title": "Source Record Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_id",
+          "source",
+          "event_type",
+          "event_time",
+          "ingested_at",
+          "source_record_id"
+        ],
+        "title": "EvidenceEvent",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "HealthResponse": {
+        "properties": {
+          "database": {
+            "title": "Database",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "database"
+        ],
+        "title": "HealthResponse",
+        "type": "object"
+      },
+      "ModelEvaluation": {
+        "properties": {
+          "evaluations": {
+            "items": {
+              "$ref": "#/components/schemas/ModelEvaluationItem"
+            },
+            "title": "Evaluations",
+            "type": "array"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "title": "Metadata",
+            "type": "object"
+          },
+          "model_kind": {
+            "title": "Model Kind",
+            "type": "string"
+          },
+          "model_version": {
+            "title": "Model Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "model_version",
+          "model_kind",
+          "metadata",
+          "evaluations"
+        ],
+        "title": "ModelEvaluation",
+        "type": "object"
+      },
+      "ModelEvaluationItem": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "metrics": {
+            "additionalProperties": true,
+            "title": "Metrics",
+            "type": "object"
+          },
+          "scope": {
+            "title": "Scope",
+            "type": "string"
+          },
+          "selection_hash": {
+            "title": "Selection Hash",
+            "type": "string"
+          },
+          "split": {
+            "title": "Split",
+            "type": "string"
+          }
+        },
+        "required": [
+          "split",
+          "scope",
+          "metrics",
+          "selection_hash",
+          "created_at"
+        ],
+        "title": "ModelEvaluationItem",
+        "type": "object"
+      },
+      "ModelItem": {
+        "properties": {
+          "artifact_sha256": {
+            "title": "Artifact Sha256",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "feature_set_version": {
+            "title": "Feature Set Version",
+            "type": "string"
+          },
+          "model_kind": {
+            "title": "Model Kind",
+            "type": "string"
+          },
+          "model_version": {
+            "title": "Model Version",
+            "type": "string"
+          },
+          "model_version_id": {
+            "title": "Model Version Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "model_version_id",
+          "model_version",
+          "model_kind",
+          "feature_set_version",
+          "artifact_sha256",
+          "status",
+          "created_at"
+        ],
+        "title": "ModelItem",
+        "type": "object"
+      },
+      "ModelList": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ModelItem"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "ModelList",
+        "type": "object"
+      },
+      "OutboxItem": {
+        "properties": {
+          "action_id": {
+            "title": "Action Id",
+            "type": "string"
+          },
+          "attempts": {
+            "title": "Attempts",
+            "type": "integer"
+          },
+          "channel": {
+            "title": "Channel",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "delivery_mode": {
+            "title": "Delivery Mode",
+            "type": "string"
+          },
+          "finished_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished At"
+          },
+          "last_error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Error"
+          },
+          "max_attempts": {
+            "title": "Max Attempts",
+            "type": "integer"
+          },
+          "next_attempt_at": {
+            "format": "date-time",
+            "title": "Next Attempt At",
+            "type": "string"
+          },
+          "outbox_id": {
+            "title": "Outbox Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "outbox_id",
+          "action_id",
+          "channel",
+          "delivery_mode",
+          "status",
+          "attempts",
+          "max_attempts",
+          "next_attempt_at",
+          "last_error",
+          "created_at",
+          "finished_at"
+        ],
+        "title": "OutboxItem",
+        "type": "object"
+      },
+      "OutboxList": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/OutboxItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "title": "OutboxList",
+        "type": "object"
+      },
+      "PredictionDetail": {
+        "properties": {
+          "account_id": {
+            "title": "Account Id",
+            "type": "string"
+          },
+          "contributions": {
+            "additionalProperties": true,
+            "description": "Per-feature provenance: method, window, source, and cited event ids.",
+            "title": "Contributions",
+            "type": "object"
+          },
+          "eligible": {
+            "title": "Eligible",
+            "type": "boolean"
+          },
+          "feature_cutoff_at": {
+            "format": "date-time",
+            "title": "Feature Cutoff At",
+            "type": "string"
+          },
+          "feature_set_version": {
+            "title": "Feature Set Version",
+            "type": "string"
+          },
+          "feature_values": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feature Values"
+          },
+          "ineligible_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ineligible Reason"
+          },
+          "model_version": {
+            "title": "Model Version",
+            "type": "string"
+          },
+          "model_version_id": {
+            "title": "Model Version Id",
+            "type": "string"
+          },
+          "prediction_id": {
+            "title": "Prediction Id",
+            "type": "string"
+          },
+          "renewal_date": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Renewal Date"
+          },
+          "risk_score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "ML risk score. Not the RYG status.",
+            "title": "Risk Score"
+          },
+          "ryg": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Ryg"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Read-time RYG. Null unless ryg_state is evaluated."
+          },
+          "ryg_state": {
+            "description": "evaluated: ryg is present. not_eligible: the account was outside the scoring window, so there is no RYG. no_snapshot: eligible but no stored snapshot to evaluate. None of these is green.",
+            "enum": [
+              "evaluated",
+              "not_eligible",
+              "no_snapshot"
+            ],
+            "title": "Ryg State",
+            "type": "string"
+          },
+          "scored_at": {
+            "format": "date-time",
+            "title": "Scored At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prediction_id",
+          "model_version_id",
+          "feature_cutoff_at",
+          "scored_at",
+          "eligible",
+          "ineligible_reason",
+          "risk_score",
+          "ryg_state",
+          "ryg",
+          "account_id",
+          "model_version",
+          "feature_set_version",
+          "renewal_date",
+          "feature_values",
+          "contributions"
+        ],
+        "title": "PredictionDetail",
+        "type": "object"
+      },
+      "PredictionEvidence": {
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceEvent"
+            },
+            "title": "Events",
+            "type": "array"
+          },
+          "prediction_id": {
+            "title": "Prediction Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prediction_id",
+          "events"
+        ],
+        "title": "PredictionEvidence",
+        "type": "object"
+      },
+      "PredictionList": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/PredictionListItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "title": "PredictionList",
+        "type": "object"
+      },
+      "PredictionListItem": {
+        "properties": {
+          "eligible": {
+            "title": "Eligible",
+            "type": "boolean"
+          },
+          "feature_cutoff_at": {
+            "format": "date-time",
+            "title": "Feature Cutoff At",
+            "type": "string"
+          },
+          "ineligible_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ineligible Reason"
+          },
+          "model_version_id": {
+            "title": "Model Version Id",
+            "type": "string"
+          },
+          "prediction_id": {
+            "title": "Prediction Id",
+            "type": "string"
+          },
+          "risk_score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "ML risk score. Not the RYG status.",
+            "title": "Risk Score"
+          },
+          "ryg": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Ryg"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Read-time RYG. Null unless ryg_state is evaluated."
+          },
+          "ryg_state": {
+            "description": "evaluated: ryg is present. not_eligible: the account was outside the scoring window, so there is no RYG. no_snapshot: eligible but no stored snapshot to evaluate. None of these is green.",
+            "enum": [
+              "evaluated",
+              "not_eligible",
+              "no_snapshot"
+            ],
+            "title": "Ryg State",
+            "type": "string"
+          },
+          "scored_at": {
+            "format": "date-time",
+            "title": "Scored At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prediction_id",
+          "model_version_id",
+          "feature_cutoff_at",
+          "scored_at",
+          "eligible",
+          "ineligible_reason",
+          "risk_score",
+          "ryg_state",
+          "ryg"
+        ],
+        "title": "PredictionListItem",
+        "type": "object"
+      },
+      "PredictionSummary": {
+        "properties": {
+          "eligible": {
+            "title": "Eligible",
+            "type": "boolean"
+          },
+          "feature_cutoff_at": {
+            "format": "date-time",
+            "title": "Feature Cutoff At",
+            "type": "string"
+          },
+          "ineligible_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ineligible Reason"
+          },
+          "model_version_id": {
+            "title": "Model Version Id",
+            "type": "string"
+          },
+          "prediction_id": {
+            "title": "Prediction Id",
+            "type": "string"
+          },
+          "risk_score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "ML risk score. Not the RYG status.",
+            "title": "Risk Score"
+          },
+          "ryg": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Ryg"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Read-time RYG. Null unless ryg_state is evaluated."
+          },
+          "ryg_state": {
+            "description": "evaluated: ryg is present. not_eligible: the account was outside the scoring window, so there is no RYG. no_snapshot: eligible but no stored snapshot to evaluate. None of these is green.",
+            "enum": [
+              "evaluated",
+              "not_eligible",
+              "no_snapshot"
+            ],
+            "title": "Ryg State",
+            "type": "string"
+          },
+          "scored_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scored At"
+          }
+        },
+        "required": [
+          "prediction_id",
+          "model_version_id",
+          "feature_cutoff_at",
+          "scored_at",
+          "eligible",
+          "ineligible_reason",
+          "risk_score",
+          "ryg_state",
+          "ryg"
+        ],
+        "title": "PredictionSummary",
+        "type": "object"
+      },
+      "Ryg": {
+        "properties": {
+          "feature_cutoff_at": {
+            "format": "date-time",
+            "title": "Feature Cutoff At",
+            "type": "string"
+          },
+          "policy_version": {
+            "title": "Policy Version",
+            "type": "string"
+          },
+          "reasons": {
+            "items": {
+              "$ref": "#/components/schemas/RygReason"
+            },
+            "title": "Reasons",
+            "type": "array"
+          },
+          "status": {
+            "description": "insufficient_data is a RYG status with reasons; it is not green.",
+            "enum": [
+              "red",
+              "yellow",
+              "green",
+              "insufficient_data"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "policy_version",
+          "feature_cutoff_at",
+          "reasons"
+        ],
+        "title": "Ryg",
+        "type": "object"
+      },
+      "RygReason": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "feature": {
+            "title": "Feature",
+            "type": "string"
+          },
+          "observed": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed"
+          },
+          "severity": {
+            "enum": [
+              "red",
+              "yellow",
+              "green",
+              "insufficient_data"
+            ],
+            "title": "Severity",
+            "type": "string"
+          },
+          "threshold": {
+            "title": "Threshold",
+            "type": "number"
+          }
+        },
+        "required": [
+          "code",
+          "feature",
+          "observed",
+          "threshold",
+          "severity"
+        ],
+        "title": "RygReason",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "Customer Health Intelligence API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/v1/accounts": {
+      "get": {
+        "operationId": "list_accounts_api_v1_accounts_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "description": "Ranking order. risk_desc is the only supported value.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "default": "risk_desc",
+              "description": "Ranking order. risk_desc is the only supported value.",
+              "enum": [
+                "risk_desc"
+              ],
+              "title": "Sort",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Malformed cursor, or unsupported sort"
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Ranked accounts by latest risk",
+        "tags": [
+          "v1"
+        ]
+      }
+    },
+    "/api/v1/accounts/{account_id}": {
+      "get": {
+        "operationId": "get_account_api_v1_accounts__account_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "account_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Account Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          },
+          "404": {
+            "description": "Not found in this organisation"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Account profile",
+        "tags": [
+          "v1"
+        ]
+      }
+    },
+    "/api/v1/accounts/{account_id}/actions": {
+      "get": {
+        "operationId": "list_account_actions_api_v1_accounts__account_id__actions_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "account_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Account Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          },
+          "404": {
+            "description": "Not found in this organisation"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Recommended actions for an account",
+        "tags": [
+          "v1"
+        ]
+      }
+    },
+    "/api/v1/accounts/{account_id}/predictions": {
+      "get": {
+        "operationId": "list_account_predictions_api_v1_accounts__account_id__predictions_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "account_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Account Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Malformed cursor, or unsupported sort"
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          },
+          "404": {
+            "description": "Not found in this organisation"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Prediction history for an account",
+        "tags": [
+          "v1"
+        ]
+      }
+    },
+    "/api/v1/actions/{action_id}/approvals": {
+      "post": {
+        "operationId": "approve_action_api_v1_actions__action_id__approvals_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "action_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Action Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "maxLength": 255,
+              "minLength": 1,
+              "title": "Idempotency-Key",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApprovalRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          },
+          "403": {
+            "description": "Role cannot decide actions, or readonly token"
+          },
+          "404": {
+            "description": "Action not found in this organisation"
+          },
+          "409": {
+            "description": "Action already has a different decision"
+          },
+          "422": {
+            "description": "Missing Idempotency-Key, invalid body, or key reused for another body"
+          }
+        },
+        "summary": "Approve or reject one proposed action (idempotent)",
+        "tags": [
+          "v1"
+        ]
+      }
+    },
+    "/api/v1/data-quality": {
+      "get": {
+        "operationId": "get_data_quality_api_v1_data_quality_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataQuality"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          }
+        },
+        "summary": "Ingestion data-quality counts",
+        "tags": [
+          "v1"
+        ]
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health",
+        "tags": [
+          "system"
+        ]
+      }
+    },
+    "/api/v1/models": {
+      "get": {
+        "operationId": "list_models_api_v1_models_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          }
+        },
+        "summary": "Registered model versions",
+        "tags": [
+          "v1"
+        ]
+      }
+    },
+    "/api/v1/models/{version}/evaluation": {
+      "get": {
+        "operationId": "get_model_evaluation_api_v1_models__version__evaluation_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "version",
+            "required": true,
+            "schema": {
+              "title": "Version",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelEvaluation"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          },
+          "404": {
+            "description": "Not found in this organisation"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Persisted evaluation report for one model version",
+        "tags": [
+          "v1"
+        ]
+      }
+    },
+    "/api/v1/outbox": {
+      "get": {
+        "operationId": "list_outbox_api_v1_outbox_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "pending",
+                    "sending",
+                    "sent",
+                    "dry_run_recorded",
+                    "suppressed",
+                    "dead_letter"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OutboxList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "Malformed cursor"
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          },
+          "422": {
+            "description": "Unknown outbox status"
+          }
+        },
+        "summary": "Outbox status",
+        "tags": [
+          "v1"
+        ]
+      }
+    },
+    "/api/v1/predictions/{prediction_id}": {
+      "get": {
+        "operationId": "get_prediction_api_v1_predictions__prediction_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "prediction_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Prediction Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          },
+          "404": {
+            "description": "Not found in this organisation"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "One prediction snapshot with contributions",
+        "tags": [
+          "v1"
+        ]
+      }
+    },
+    "/api/v1/predictions/{prediction_id}/evidence": {
+      "get": {
+        "operationId": "get_prediction_evidence_api_v1_predictions__prediction_id__evidence_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "prediction_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Prediction Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionEvidence"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          },
+          "404": {
+            "description": "Not found in this organisation"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Source events cited by a prediction",
+        "tags": [
+          "v1"
+        ]
+      }
+    }
+  }
+}

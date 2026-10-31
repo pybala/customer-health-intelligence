@@ -1,0 +1,10 @@
+{
+  "tokens": [
+    {
+      "label": "acme-csm",
+      "token": "dev_REPLACE_WITH_A_RANDOM_VALUE_OF_24_PLUS_CHARS",
+      "org_id": "00000000-0000-0000-0000-000000000000",
+      "role": "csm"
+    }
+  ]
+}

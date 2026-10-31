@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+artifacts/models/
+artifacts/screenshots/
+*.egg-info/
+config/dev_tokens.json

@@ -1,0 +1,39 @@
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"pe_nor_0000021","detail":{},"kind":"missing_source","org":"northwind-cloud","source":"product"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"pe_nor_0000125","detail":{},"kind":"missing_source","org":"northwind-cloud","source":"product"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"pe_nor_0000142","detail":{},"kind":"missing_source","org":"northwind-cloud","source":"product"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"pe_nor_0000144","detail":{},"kind":"missing_source","org":"northwind-cloud","source":"product"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"pe_nor_0000010","detail":{},"kind":"late_arrival","org":"northwind-cloud","source":"product"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"pe_nor_0000058","detail":{},"kind":"late_arrival","org":"northwind-cloud","source":"product"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"pe_nor_0000064","detail":{},"kind":"late_arrival","org":"northwind-cloud","source":"product"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"pe_nor_0000095","detail":{},"kind":"timezone_less","org":"northwind-cloud","source":"product"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"pe_nor_0000122","detail":{},"kind":"timezone_less","org":"northwind-cloud","source":"product"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"pe_nor_0000051","detail":{},"kind":"revised_record","org":"northwind-cloud","source":"product"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"pe_nor_0000031","detail":{},"kind":"duplicate","org":"northwind-cloud","source":"product"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"pe_nor_0000091","detail":{},"kind":"duplicate","org":"northwind-cloud","source":"product"}
+{"account_id":null,"clean_record_id":"2026-08-23","detail":{"rows":2},"kind":"out_of_order_batch","org":"northwind-cloud","source":"product"}
+{"account_id":"262c7674-5997-4c62-aa3d-f14f6bf1738b","clean_record_id":"gm_nor_0000035","detail":{},"kind":"missing_source","org":"northwind-cloud","source":"gmail"}
+{"account_id":"75a21fbe-7f3e-46a9-bcb9-3f25874bca3c","clean_record_id":"gm_nor_0000000","detail":{},"kind":"late_arrival","org":"northwind-cloud","source":"gmail"}
+{"account_id":"75a21fbe-7f3e-46a9-bcb9-3f25874bca3c","clean_record_id":"gm_nor_0000001","detail":{},"kind":"late_arrival","org":"northwind-cloud","source":"gmail"}
+{"account_id":"262c7674-5997-4c62-aa3d-f14f6bf1738b","clean_record_id":"gm_nor_0000030","detail":{"domain":"freemail.example.test"},"kind":"domain_freemail","org":"northwind-cloud","source":"gmail"}
+{"account_id":"5be96d45-1003-4291-b249-0a8f565c1a4e","clean_record_id":"gm_nor_0000038","detail":{"domain":"freemail.example.test"},"kind":"domain_freemail","org":"northwind-cloud","source":"gmail"}
+{"account_id":"262c7674-5997-4c62-aa3d-f14f6bf1738b","clean_record_id":"gm_nor_0000044","detail":{},"kind":"late_arrival","org":"northwind-cloud","source":"gmail"}
+{"account_id":"262c7674-5997-4c62-aa3d-f14f6bf1738b","clean_record_id":"gm_nor_0000019","detail":{},"kind":"duplicate","org":"northwind-cloud","source":"gmail"}
+{"account_id":"2625876a-7bba-403d-a4df-d0b133bb922c","clean_record_id":"zd_nor_0000010","detail":{},"kind":"missing_source","org":"northwind-cloud","source":"zendesk"}
+{"account_id":"262c7674-5997-4c62-aa3d-f14f6bf1738b","clean_record_id":"zd_nor_0000000","detail":{"variant":"APPLIED TUNDRA MEDIA CO"},"kind":"name_variant","org":"northwind-cloud","source":"zendesk"}
+{"account_id":"262c7674-5997-4c62-aa3d-f14f6bf1738b","clean_record_id":"zd_nor_0000007","detail":{"variant":"applied tundra media"},"kind":"name_variant","org":"northwind-cloud","source":"zendesk"}
+{"account_id":"2625876a-7bba-403d-a4df-d0b133bb922c","clean_record_id":"zd_nor_0000012","detail":{"variant":"nimbus foods"},"kind":"name_variant","org":"northwind-cloud","source":"zendesk"}
+{"account_id":"262c7674-5997-4c62-aa3d-f14f6bf1738b","clean_record_id":"zd_nor_0000013","detail":{"variant":"APPLIED TUNDRA MEDIA CO"},"kind":"name_variant","org":"northwind-cloud","source":"zendesk"}
+{"account_id":"262c7674-5997-4c62-aa3d-f14f6bf1738b","clean_record_id":"zd_nor_0000017","detail":{"variant":"applied tundra media"},"kind":"name_variant","org":"northwind-cloud","source":"zendesk"}
+{"account_id":"cafdda71-e95b-4a6b-a30d-b365678e070e","clean_record_id":"zd_nor_0000024","detail":{},"kind":"late_arrival","org":"northwind-cloud","source":"zendesk"}
+{"account_id":"132b91bb-f1b3-45cb-a8dc-45f8c7419fc2","clean_record_id":"zd_nor_0000037","detail":{"variant":"Uinted Dawn Robotics Inc"},"kind":"name_variant","org":"northwind-cloud","source":"zendesk"}
+{"account_id":"132b91bb-f1b3-45cb-a8dc-45f8c7419fc2","clean_record_id":"zd_nor_0000044","detail":{},"kind":"late_arrival","org":"northwind-cloud","source":"zendesk"}
+{"account_id":"132b91bb-f1b3-45cb-a8dc-45f8c7419fc2","clean_record_id":"zd_nor_0000042","detail":{},"kind":"duplicate","org":"northwind-cloud","source":"zendesk"}
+{"account_id":null,"clean_record_id":"2025-10-06","detail":{"rows":2},"kind":"out_of_order_batch","org":"northwind-cloud","source":"zendesk"}
+{"account_id":"5be96d45-1003-4291-b249-0a8f565c1a4e","clean_record_id":"00T_nor_0000018","detail":{},"kind":"missing_source","org":"northwind-cloud","source":"salesforce"}
+{"account_id":"5be96d45-1003-4291-b249-0a8f565c1a4e","clean_record_id":"00T_nor_0000009","detail":{},"kind":"sf_account_id_missing","org":"northwind-cloud","source":"salesforce"}
+{"account_id":"cb9c4e5b-4cf1-4cbd-a614-9df87d95d160","clean_record_id":"00T_nor_0000031","detail":{},"kind":"late_arrival","org":"northwind-cloud","source":"salesforce"}
+{"account_id":"cb9c4e5b-4cf1-4cbd-a614-9df87d95d160","clean_record_id":"00T_nor_0000036","detail":{},"kind":"sf_account_id_missing","org":"northwind-cloud","source":"salesforce"}
+{"account_id":"cb9c4e5b-4cf1-4cbd-a614-9df87d95d160","clean_record_id":"00T_nor_0000041","detail":{},"kind":"duplicate","org":"northwind-cloud","source":"salesforce"}
+{"account_id":"5be96d45-1003-4291-b249-0a8f565c1a4e","clean_record_id":"evt_nor_0000010","detail":{},"kind":"missing_source","org":"northwind-cloud","source":"stripe"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"evt_nor_0000004","detail":{},"kind":"late_arrival","org":"northwind-cloud","source":"stripe"}
+{"account_id":"f128fff4-534c-47a4-a8b8-d57b3e4418f6","clean_record_id":"evt_nor_0000021","detail":{},"kind":"duplicate","org":"northwind-cloud","source":"stripe"}

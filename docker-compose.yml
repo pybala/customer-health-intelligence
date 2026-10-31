@@ -1,0 +1,95 @@
+name: customer-health-intelligence
+
+# Every secret is read from .env (copy .env.example). Compose refuses to start if one is missing.
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: chi
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      CHI_OWNER_PASSWORD: ${CHI_OWNER_PASSWORD:?set CHI_OWNER_PASSWORD in .env}
+      CHI_APP_PASSWORD: ${CHI_APP_PASSWORD:?set CHI_APP_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:${DB_PORT:-5434}:5432"
+    volumes:
+      - chi-pgdata:/var/lib/postgresql/data
+      - ./docker/postgres/initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d chi"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  migrate:
+    build: .
+    command: ["alembic", "upgrade", "head"]
+    environment:
+      MIGRATION_DATABASE_URL: postgresql+psycopg://chi_owner:${CHI_OWNER_PASSWORD:?}@db:5432/chi
+      DATABASE_URL: postgresql+psycopg://chi_app:${CHI_APP_PASSWORD:?}@db:5432/chi
+      API_KEY_PEPPER: ${API_KEY_PEPPER:?set API_KEY_PEPPER in .env}
+      AUTH_MODE: ${AUTH_MODE:-api_keys}
+      DEV_TOKENS_FILE: /run/chi/dev_tokens.json
+      OUTREACH_MODE: ${OUTREACH_MODE:-dry_run}
+      EMAIL_ADAPTER: ${EMAIL_ADAPTER:-mock}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    build: .
+    command: ["uvicorn", "app.api.main:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://chi_app:${CHI_APP_PASSWORD:?}@db:5432/chi
+      API_KEY_PEPPER: ${API_KEY_PEPPER:?set API_KEY_PEPPER in .env}
+      AUTH_MODE: ${AUTH_MODE:-api_keys}
+      DEV_TOKENS_FILE: /run/chi/dev_tokens.json
+      OUTREACH_MODE: ${OUTREACH_MODE:-dry_run}
+      EMAIL_ADAPTER: ${EMAIL_ADAPTER:-mock}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    volumes:
+      - ./config:/run/chi:ro
+    ports:
+      - "127.0.0.1:${API_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=3).status == 200 else 1)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  dashboard:
+    build: .
+    command:
+      - python
+      - -m
+      - streamlit
+      - run
+      - app/dashboard/main.py
+      - --server.address=0.0.0.0
+      - --server.port=8501
+      - --server.headless=true
+      - --browser.gatherUsageStats=false
+      - --theme.base=light
+      - --theme.primaryColor=#4338ca
+      - --theme.backgroundColor=#f1f5f9
+      - --theme.secondaryBackgroundColor=#ffffff
+      - --theme.textColor=#0f172a
+    environment:
+      DASHBOARD_API_URL: http://api:8000
+      DASHBOARD_API_TOKEN: ${DASHBOARD_API_TOKEN:-}
+    ports:
+      - "127.0.0.1:${DASHBOARD_PORT:-8501}:8501"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  chi-pgdata:
